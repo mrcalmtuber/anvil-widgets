@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Q9-4ITeedkBKAffo2cv0i"
+uri = "file://artifacts/widget-hub/public/icons/weather.png"
+type = "image"
+title = "Weather icon"
+
+[[generated]]
+id = "q9ikU5nsWnTCnu6jBX-sA"
+uri = "file://artifacts/widget-hub/public/icons/calendar.png"
+type = "image"
+title = "Calendar icon"
+
+[[generated]]
+id = "EtZddTwzN3UUwGcGVURKw"
+uri = "file://artifacts/widget-hub/public/icons/clock.png"
+type = "image"
+title = "Clock icon"
+
+[[generated]]
+id = "k1wEmkCNgj6szwFi-fjW8"
+uri = "file://artifacts/widget-hub/public/icons/batteries.png"
+type = "image"
+title = "Batteries icon"
+
+[[generated]]
+id = "WnR97rlOerW1eir2HNkgj"
+uri = "file://artifacts/widget-hub/public/icons/reminders.png"
+type = "image"
+title = "Reminders icon"
+
+[[generated]]
+id = "eU4IjAaULqwPzVzwgXGYj"
+uri = "file://artifacts/widget-hub/public/icons/notes.png"
+type = "image"
+title = "Notes icon"
+
+[[generated]]
+id = "MHg455thvzu-XalIUPvHz"
+uri = "file://artifacts/widget-hub/public/icons/screentime.png"
+type = "image"
+title = "Screen time icon"
+
+[[generated]]
+id = "CdC6ldCvGzQTVvU1oOi3s"
+uri = "file://artifacts/widget-hub/public/icons/shortcuts.png"
+type = "image"
+title = "Shortcuts icon"
+
+[[generated]]
+id = "FiQNsY9eg-61CKkd9m_d_"
+uri = "file://artifacts/widget-hub/public/icons/files.png"
+type = "image"
+title = "Files icon"
+
+[[generated]]
+id = "KKYDNw_B2cD5yR6m8nY1r"
+uri = "file://artifacts/widget-hub/public/icons/fitness.png"
+type = "image"
+title = "Fitness icon"
