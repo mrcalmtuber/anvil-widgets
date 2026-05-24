@@ -2,11 +2,11 @@ import { WidgetWrapper } from "./WidgetWrapper";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export function MusicWidget({ delay = 0 }: { delay?: number }) {
+export function MusicWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const [playing, setPlaying] = useState(true);
 
   return (
-    <WidgetWrapper colSpan={2} delay={delay} className="p-4 bg-card text-card-foreground flex items-center gap-4">
+    <WidgetWrapper colSpan={2} delay={delay} onRemove={onRemove} className="p-4 bg-card text-card-foreground flex items-center gap-4">
       <div className="w-[68px] h-[68px] rounded-[12px] bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 flex-shrink-0 shadow-md relative overflow-hidden">
         {/* simulate album art */}
         <div className="absolute inset-0 bg-black/10" />

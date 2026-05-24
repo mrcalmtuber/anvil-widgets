@@ -1,6 +1,6 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 
-export function ScreenTimeWidget({ delay = 0 }: { delay?: number }) {
+export function ScreenTimeWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const bars = [
     { label: "IG", height: "80%", color: "#BF5AF2" },
     { label: "Safari", height: "50%", color: "#0A84FF" },
@@ -9,7 +9,7 @@ export function ScreenTimeWidget({ delay = 0 }: { delay?: number }) {
   ];
 
   return (
-    <WidgetWrapper delay={delay} className="p-4 bg-card text-card-foreground flex flex-col justify-between">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-4 bg-card text-card-foreground flex flex-col justify-between">
       <div>
         <h4 className="text-xs font-semibold text-muted-foreground">Screen Time</h4>
         <p className="text-xl font-bold tracking-tight text-[#BF5AF2] mt-0.5">4h 32m</p>

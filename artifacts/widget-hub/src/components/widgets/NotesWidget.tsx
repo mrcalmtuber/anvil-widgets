@@ -1,8 +1,8 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 
-export function NotesWidget({ delay = 0 }: { delay?: number }) {
+export function NotesWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   return (
-    <WidgetWrapper delay={delay} className="p-4 bg-[#FFD60A]/10 text-[#FFD60A] relative overflow-hidden">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-4 bg-[#FFD60A]/10 text-[#FFD60A] relative overflow-hidden">
       {/* Lined paper texture effect */}
       <div className="absolute inset-0 opacity-10 pointer-events-none bg-[linear-gradient(to_bottom,transparent_19px,#FFD60A_20px)] bg-[length:100%_20px]" />
       

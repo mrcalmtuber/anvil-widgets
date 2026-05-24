@@ -1,6 +1,6 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 
-export function BatteriesWidget({ delay = 0 }: { delay?: number }) {
+export function BatteriesWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const devices = [
     { name: "iPhone", level: 87, type: "phone", color: "#34C759" },
     { name: "AirPods", level: 64, type: "headphones", color: "#34C759" },
@@ -9,7 +9,7 @@ export function BatteriesWidget({ delay = 0 }: { delay?: number }) {
   ];
 
   return (
-    <WidgetWrapper delay={delay} className="p-4 justify-between bg-card text-card-foreground">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-4 justify-between bg-card text-card-foreground">
       <div className="grid grid-cols-2 grid-rows-2 gap-3 h-full">
         {devices.map((device, i) => (
           <div key={i} className="flex flex-col items-center justify-center relative">

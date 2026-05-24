@@ -2,7 +2,7 @@ import { WidgetWrapper } from "./WidgetWrapper";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export function RemindersWidget({ delay = 0 }: { delay?: number }) {
+export function RemindersWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const [tasks, setTasks] = useState([
     { id: 1, text: "Buy oat milk", done: false },
     { id: 2, text: "Call mom", done: false },
@@ -17,7 +17,7 @@ export function RemindersWidget({ delay = 0 }: { delay?: number }) {
   const pending = tasks.filter(t => !t.done).length;
 
   return (
-    <WidgetWrapper delay={delay} className="p-4 bg-card text-card-foreground">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-4 bg-card text-card-foreground">
       <div className="flex gap-2 items-center mb-3">
         <div className="bg-[#FF9500] w-6 h-6 rounded-full flex items-center justify-center shadow-sm">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>

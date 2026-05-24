@@ -1,6 +1,6 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 
-export function CalendarWidget({ delay = 0 }: { delay?: number }) {
+export function CalendarWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const today = new Date();
   const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
   const dayNum = today.getDate();
@@ -11,7 +11,7 @@ export function CalendarWidget({ delay = 0 }: { delay?: number }) {
   ];
 
   return (
-    <WidgetWrapper delay={delay} className="p-4 justify-between bg-card text-card-foreground">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-4 justify-between bg-card text-card-foreground">
       <div>
         <h4 className="text-[#FF3B30] text-sm font-semibold tracking-wide uppercase">{dayName}</h4>
         <div className="text-4xl font-light tracking-tighter mt-1">{dayNum}</div>

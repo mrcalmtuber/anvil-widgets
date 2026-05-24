@@ -1,8 +1,8 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 
-export function MapsWidget({ delay = 0 }: { delay?: number }) {
+export function MapsWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   return (
-    <WidgetWrapper delay={delay} className="p-0 border-none relative overflow-hidden bg-[#242426]">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-0 border-none relative overflow-hidden bg-[#242426]">
       {/* simulated map background */}
       <div className="absolute inset-0 bg-[#2b2b2d] opacity-80" />
       <svg className="absolute inset-0 w-full h-full text-white/5" viewBox="0 0 100 100" preserveAspectRatio="none">

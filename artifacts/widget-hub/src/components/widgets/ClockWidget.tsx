@@ -1,7 +1,7 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 import { useEffect, useState } from "react";
 
-export function ClockWidget({ delay = 0 }: { delay?: number }) {
+export function ClockWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function ClockWidget({ delay = 0 }: { delay?: number }) {
   const hourDeg = (hours % 12) * 30 + minutes * 0.5;
 
   return (
-    <WidgetWrapper delay={delay} className="p-4 bg-black flex flex-col items-center justify-center">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-4 bg-black flex flex-col items-center justify-center">
       <div className="relative w-[110px] h-[110px] rounded-full border-[3px] border-white flex items-center justify-center bg-black">
         {/* Ticks */}
         {[...Array(12)].map((_, i) => (

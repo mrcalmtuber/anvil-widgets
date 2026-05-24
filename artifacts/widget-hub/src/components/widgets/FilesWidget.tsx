@@ -1,6 +1,6 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 
-export function FilesWidget({ delay = 0 }: { delay?: number }) {
+export function FilesWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const files = [
     { name: "Q4 Report", ext: "pdf", date: "Yesterday", color: "text-[#FF375F]" },
     { name: "Design Brief", ext: "fig", date: "Tuesday", color: "text-[#BF5AF2]" },
@@ -8,7 +8,7 @@ export function FilesWidget({ delay = 0 }: { delay?: number }) {
   ];
 
   return (
-    <WidgetWrapper delay={delay} className="p-4 bg-card text-card-foreground">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-4 bg-card text-card-foreground">
       <div className="flex gap-2 items-center mb-3">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-[#0A84FF]"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
         <h4 className="font-semibold text-sm">Recents</h4>

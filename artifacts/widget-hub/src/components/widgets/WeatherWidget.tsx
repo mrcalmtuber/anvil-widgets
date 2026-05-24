@@ -1,6 +1,6 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 
-export function WeatherWidget({ delay = 0 }: { delay?: number }) {
+export function WeatherWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const hourly = [
     { time: "Now", temp: 72 },
     { time: "1 PM", temp: 73 },
@@ -11,7 +11,7 @@ export function WeatherWidget({ delay = 0 }: { delay?: number }) {
   ];
 
   return (
-    <WidgetWrapper colSpan={2} delay={delay} className="bg-gradient-to-b from-[#1A457B] to-[#4FC3F7] border-none text-white p-4 justify-between">
+    <WidgetWrapper colSpan={2} delay={delay} onRemove={onRemove} className="bg-gradient-to-b from-[#1A457B] to-[#4FC3F7] border-none text-white p-4 justify-between">
       <div className="flex justify-between items-start">
         <div>
           <h3 className="text-xl font-medium tracking-tight shadow-black/20 drop-shadow-sm">San Francisco</h3>

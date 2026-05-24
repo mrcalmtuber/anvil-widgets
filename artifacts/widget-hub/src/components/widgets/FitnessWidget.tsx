@@ -1,6 +1,6 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 
-export function FitnessWidget({ delay = 0 }: { delay?: number }) {
+export function FitnessWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   // Move: 420/500, Exercise: 28/30, Stand: 10/12
   const move = 420 / 500;
   const exercise = 28 / 30;
@@ -12,7 +12,7 @@ export function FitnessWidget({ delay = 0 }: { delay?: number }) {
   };
 
   return (
-    <WidgetWrapper colSpan={2} delay={delay} className="p-4 bg-card text-card-foreground flex items-center gap-6">
+    <WidgetWrapper colSpan={2} delay={delay} onRemove={onRemove} className="p-4 bg-card text-card-foreground flex items-center gap-6">
       <div className="relative w-24 h-24 shrink-0 -rotate-90">
         <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-md">
           {/* Background rings */}

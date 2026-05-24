@@ -1,7 +1,7 @@
 import { WidgetWrapper } from "./WidgetWrapper";
 import { motion } from "framer-motion";
 
-export function ShortcutsWidget({ delay = 0 }: { delay?: number }) {
+export function ShortcutsWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
   const shortcuts = [
     { label: "Send ETA", color: "bg-[#0A84FF]", icon: "M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" },
     { label: "Smart Lights", color: "bg-[#FF9F0A]", icon: "M9 18h6M10 22h4M12 2v1M19 4l-1 1M5 4l1 1M12 6a6 6 0 0 0-6 6c0 2 1.5 3.5 2 4.5h8c.5-1 2-2.5 2-4.5a6 6 0 0 0-6-6z" },
@@ -10,7 +10,7 @@ export function ShortcutsWidget({ delay = 0 }: { delay?: number }) {
   ];
 
   return (
-    <WidgetWrapper delay={delay} className="p-3 bg-card grid grid-cols-2 grid-rows-2 gap-3">
+    <WidgetWrapper delay={delay} onRemove={onRemove} className="p-3 bg-card grid grid-cols-2 grid-rows-2 gap-3">
       {shortcuts.map((s, i) => (
         <motion.div 
           key={i}
