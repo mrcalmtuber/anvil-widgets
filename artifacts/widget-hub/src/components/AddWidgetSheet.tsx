@@ -28,7 +28,9 @@ export function AddWidgetSheet({ widget, onClose }: AddWidgetSheetProps) {
       setLocalConfig({ ...config });
       setAdded(addedWidgets.has(widget.id));
     }
-  }, [widget?.id, config, addedWidgets]);
+    // Only re-initialize when the selected widget changes, not on every config/addedWidgets reference change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [widget?.id]);
   
   const handleSave = () => {
     setConfig(localConfig);
@@ -82,6 +84,24 @@ export function AddWidgetSheet({ widget, onClose }: AddWidgetSheetProps) {
             
             {/* Scrollable body */}
             <div className="overflow-y-auto flex-1 px-5 pb-6 space-y-5">
+              {/* Live Widget Preview */}
+              <div>
+                <h3 className="text-[13px] font-semibold text-white/50 uppercase tracking-wider mb-3">Preview</h3>
+                <div
+                  className="w-full rounded-2xl overflow-hidden relative bg-[#0a0a0a]"
+                  style={{ height: "160px" }}
+                >
+                  <div
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                    style={{ transform: "scale(0.82)", transformOrigin: "center center" }}
+                  >
+                    <div className="w-full h-full">
+                      <widget.component delay={0} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Config fields */}
               {fields.length > 0 && (
                 <div>
@@ -149,37 +169,6 @@ export function AddWidgetSheet({ widget, onClose }: AddWidgetSheetProps) {
                   <><Plus className="w-4 h-4" /> Add to My Screen</>
                 )}
               </button>
-              
-              {/* iOS Home Screen Instructions */}
-              <div className="bg-[#2c2c2e] rounded-2xl p-4">
-                <h3 className="text-[13px] font-semibold text-white/50 uppercase tracking-wider mb-3">Add to iPhone Home Screen</h3>
-                <p className="text-[12px] text-white/40 mb-4">Works on iPhone 7 and later. Open in Safari to install.</p>
-                <div className="space-y-3">
-                  {[
-                    { step: "1", icon: "safari", text: "Open Widget Hub in Safari" },
-                    { step: "2", icon: "share", text: "Tap the Share button at the bottom" },
-                    { step: "3", icon: "add", text: 'Scroll down and tap "Add to Home Screen"' },
-                    { step: "4", icon: "confirm", text: 'Tap "Add" in the top right corner' },
-                  ].map(({ step, text }) => (
-                    <div key={step} className="flex items-start gap-3">
-                      <div
-                        className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-[11px] font-bold"
-                        style={{ backgroundColor: widget.accentColor + "33", color: widget.accentColor }}
-                      >
-                        {step}
-                      </div>
-                      <p className="text-[13px] text-white/70 leading-snug pt-0.5">{text}</p>
-                    </div>
-                  ))}
-                </div>
-                {/* Share icon visual hint */}
-                <div className="mt-4 flex items-center gap-2 bg-[#1c1c1e] rounded-xl p-3">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400 flex-shrink-0">
-                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
-                  </svg>
-                  <p className="text-[12px] text-white/50">Look for this icon in Safari's toolbar</p>
-                </div>
-              </div>
             </div>
           </motion.div>
         </>

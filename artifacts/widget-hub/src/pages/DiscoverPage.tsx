@@ -11,11 +11,16 @@ export function DiscoverPage() {
   const { addedWidgets, removeWidget } = useWidgets();
   const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>("All");
   const [selectedWidget, setSelectedWidget] = useState<WidgetDef | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredWidgets = useMemo(() => {
-    if (activeCategory === "All") return widgetRegistry;
-    return widgetRegistry.filter((w) => w.category === activeCategory);
-  }, [activeCategory]);
+    let list = activeCategory === "All" ? widgetRegistry : widgetRegistry.filter((w) => w.category === activeCategory);
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      list = list.filter((w) => w.name.toLowerCase().includes(q) || w.description.toLowerCase().includes(q));
+    }
+    return list;
+  }, [activeCategory, searchQuery]);
 
   return (
     <div className="flex flex-col gap-6 pt-12">
@@ -27,6 +32,22 @@ export function DiscoverPage() {
           </span>
         </div>
         <p className="text-[15px] text-white/50">Tap + to add widgets to your home screen</p>
+      </div>
+
+      <div className="px-5 relative">
+        <div className="absolute left-8 top-1/2 -translate-y-1/2 pointer-events-none">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} className="text-white/30">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <input
+          type="text"
+          placeholder="Search widgets..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full bg-[#1c1c1e] text-white placeholder:text-white/30 text-[15px] rounded-xl py-3 pl-10 pr-4 outline-none border border-white/5"
+          data-testid="search-widgets"
+        />
       </div>
 
       {/* Category filter chips */}
@@ -58,6 +79,15 @@ export function DiscoverPage() {
             onRemove={() => removeWidget(widget.id)}
           />
         ))}
+
+        {filteredWidgets.length === 0 && (
+          <div className="text-center py-16 px-8">
+            <p className="text-white/30 text-[15px]">No widgets match "{searchQuery}"</p>
+            <button onClick={() => setSearchQuery("")} className="mt-3 text-white/50 text-[13px] underline" data-testid="clear-search">
+              Clear search
+            </button>
+          </div>
+        )}
       </div>
 
       <AddWidgetSheet

@@ -51,19 +51,27 @@ export function MyScreenPage({ onAddMore }: { onAddMore: () => void }) {
           {activeWidgets.map((widget, index) => {
             const WidgetComponent = widget.component;
             return (
-              <div key={widget.id} className="relative group">
+              <motion.div
+                key={widget.id}
+                className={`relative ${widget.colSpan === 2 ? "col-span-2" : "col-span-1"}`}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.25 }}
+              >
                 <WidgetComponent
                   delay={index * 0.05}
                   onRemove={() => removeWidget(widget.id)}
                 />
                 <button
                   onClick={() => setSelectedWidget(widget)}
-                  className="absolute bottom-2 right-2 z-10 w-6 h-6 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute bottom-2 right-2 z-10 w-7 h-7 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10"
                   data-testid={`configure-widget-${widget.id}`}
                 >
                   <Settings className="w-3.5 h-3.5 text-white/70" />
                 </button>
-              </div>
+              </motion.div>
             );
           })}
         </AnimatePresence>
