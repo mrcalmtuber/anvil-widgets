@@ -1,11 +1,13 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 
 export function BatteriesWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("batteries");
   const devices = [
-    { name: "iPhone", level: 87, type: "phone", color: "#34C759" },
-    { name: "AirPods", level: 64, type: "headphones", color: "#34C759" },
-    { name: "Apple Watch", level: 43, type: "watch", color: "#FF9500" },
-    { name: "Case", level: 55, type: "case", color: "#34C759" }
+    { name: "iPhone", level: Number(config.iphoneLevel), type: "phone", color: "#34C759" },
+    { name: "AirPods L", level: Number(config.airpodsL), type: "headphones", color: "#34C759" },
+    { name: "AirPods R", level: Number(config.airpodsR), type: "headphones", color: "#34C759" },
+    { name: "Watch", level: Number(config.watchLevel), type: "watch", color: "#FF9500" }
   ];
 
   return (
@@ -17,7 +19,7 @@ export function BatteriesWidget({ delay = 0, onRemove }: { delay?: number; onRem
               <circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" strokeWidth="3" className="text-white/10" />
               <circle 
                 cx="18" cy="18" r="16" fill="none" 
-                stroke={device.color} strokeWidth="3" strokeLinecap="round"
+                stroke={device.level > 20 ? device.color : "#FF3B30"} strokeWidth="3" strokeLinecap="round"
                 strokeDasharray={`${(device.level / 100) * 100.5} 100`}
               />
             </svg>

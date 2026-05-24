@@ -1,14 +1,23 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 
 export function FitnessWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
-  // Move: 420/500, Exercise: 28/30, Stand: 10/12
-  const move = 420 / 500;
-  const exercise = 28 / 30;
-  const stand = 10 / 12;
+  const { config } = useConfig("fitness");
+  const moveGoal = Number(config.moveGoal);
+  const moveCurrent = Number(config.moveCurrent);
+  const exerciseGoal = Number(config.exerciseGoal);
+  const exerciseCurrent = Number(config.exerciseCurrent);
+  const standGoal = Number(config.standGoal);
+  const standCurrent = Number(config.standCurrent);
+
+  const move = moveCurrent / moveGoal;
+  const exercise = exerciseCurrent / exerciseGoal;
+  const stand = standCurrent / standGoal;
 
   const getStrokeDasharray = (radius: number, percent: number) => {
     const circumference = 2 * Math.PI * radius;
-    return `${percent * circumference} ${circumference}`;
+    const boundedPercent = Math.min(Math.max(percent, 0), 1);
+    return `${boundedPercent * circumference} ${circumference}`;
   };
 
   return (
@@ -29,15 +38,15 @@ export function FitnessWidget({ delay = 0, onRemove }: { delay?: number; onRemov
       <div className="flex-1 flex flex-col gap-2">
         <div className="flex justify-between items-end">
           <span className="text-[#FF2D55] font-bold text-xs">Move</span>
-          <span className="text-white font-bold text-sm">420<span className="text-[10px] text-muted-foreground ml-0.5">/500</span></span>
+          <span className="text-white font-bold text-sm">{moveCurrent}<span className="text-[10px] text-muted-foreground ml-0.5">/{moveGoal}</span></span>
         </div>
         <div className="flex justify-between items-end">
           <span className="text-[#a4ff2d] font-bold text-xs">Exercise</span>
-          <span className="text-white font-bold text-sm">28<span className="text-[10px] text-muted-foreground ml-0.5">/30</span></span>
+          <span className="text-white font-bold text-sm">{exerciseCurrent}<span className="text-[10px] text-muted-foreground ml-0.5">/{exerciseGoal}</span></span>
         </div>
         <div className="flex justify-between items-end">
           <span className="text-[#4cd964] font-bold text-xs">Stand</span>
-          <span className="text-white font-bold text-sm">10<span className="text-[10px] text-muted-foreground ml-0.5">/12</span></span>
+          <span className="text-white font-bold text-sm">{standCurrent}<span className="text-[10px] text-muted-foreground ml-0.5">/{standGoal}</span></span>
         </div>
       </div>
     </WidgetWrapper>

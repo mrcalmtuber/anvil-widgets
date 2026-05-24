@@ -1,8 +1,13 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
 export function MusicWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("music");
+  const songTitle = String(config.songTitle);
+  const artistName = String(config.artistName);
+  const albumName = String(config.albumName);
   const [playing, setPlaying] = useState(true);
 
   return (
@@ -13,8 +18,8 @@ export function MusicWidget({ delay = 0, onRemove }: { delay?: number; onRemove?
       </div>
       
       <div className="flex flex-col flex-1 min-w-0">
-        <h4 className="font-semibold text-sm truncate">Blinding Lights</h4>
-        <p className="text-xs text-muted-foreground truncate">The Weeknd</p>
+        <h4 className="font-semibold text-sm truncate">{songTitle}</h4>
+        <p className="text-xs text-muted-foreground truncate">{artistName}</p>
         
         <div className="flex items-center gap-4 mt-3">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-white opacity-80 hover:opacity-100 cursor-pointer"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>

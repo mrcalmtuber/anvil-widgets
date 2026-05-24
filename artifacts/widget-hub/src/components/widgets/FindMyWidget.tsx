@@ -1,10 +1,12 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 
 export function FindMyWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("findmy");
   const items = [
-    { name: "AirPods", location: "Home", status: "nearby", icon: "M3 14h3v5H3zm15 0h3v5h-3zM3 14c0-4.97 4.03-9 9-9s9 4.03 9 9" },
-    { name: "Keys AirTag", location: "Office", status: "away", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
-    { name: "iPad", location: "In bag", status: "nearby", icon: "M4 4h16v16H4z" }
+    { name: String(config.item1), location: String(config.item1Location), status: "nearby", icon: "M3 14h3v5H3zm15 0h3v5h-3zM3 14c0-4.97 4.03-9 9-9s9 4.03 9 9" },
+    { name: String(config.item2), location: String(config.item2Location), status: "away", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
+    { name: String(config.item3), location: String(config.item3Location), status: "nearby", icon: "M4 4h16v16H4z" }
   ];
 
   return (

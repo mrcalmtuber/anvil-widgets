@@ -1,7 +1,9 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 import { useEffect, useState } from "react";
 
 export function ClockWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("clock");
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -49,7 +51,7 @@ export function ClockWidget({ delay = 0, onRemove }: { delay?: number; onRemove?
         <div className="absolute w-2 h-2 bg-[#FF9500] rounded-full" />
       </div>
       <div className="absolute top-3 left-3">
-        <span className="text-[10px] font-semibold text-white/50 tracking-widest uppercase">CUPERTINO</span>
+        <span className="text-[10px] font-semibold text-white/50 tracking-widest uppercase">{String(config.city1)}</span>
       </div>
     </WidgetWrapper>
   );

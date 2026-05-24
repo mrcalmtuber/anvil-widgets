@@ -1,26 +1,33 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 
 export function WeatherWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("weather");
+  const city = String(config.city);
+  const unit = String(config.unit);
+  const temp = Number(config.temp);
+  const condition = String(config.condition);
+
   const hourly = [
-    { time: "Now", temp: 72 },
-    { time: "1 PM", temp: 73 },
-    { time: "2 PM", temp: 74 },
-    { time: "3 PM", temp: 72 },
-    { time: "4 PM", temp: 70 },
-    { time: "5 PM", temp: 68 },
+    { time: "Now", temp: temp },
+    { time: "1 PM", temp: temp + 1 },
+    { time: "2 PM", temp: temp + 2 },
+    { time: "3 PM", temp: temp },
+    { time: "4 PM", temp: temp - 2 },
+    { time: "5 PM", temp: temp - 4 },
   ];
 
   return (
     <WidgetWrapper colSpan={2} delay={delay} onRemove={onRemove} className="bg-gradient-to-b from-[#1A457B] to-[#4FC3F7] border-none text-white p-4 justify-between">
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="text-xl font-medium tracking-tight shadow-black/20 drop-shadow-sm">San Francisco</h3>
-          <p className="text-5xl font-light tracking-tighter mt-1 shadow-black/20 drop-shadow-sm">72°</p>
+          <h3 className="text-xl font-medium tracking-tight shadow-black/20 drop-shadow-sm">{city}</h3>
+          <p className="text-5xl font-light tracking-tighter mt-1 shadow-black/20 drop-shadow-sm">{temp}°</p>
         </div>
         <div className="text-right flex flex-col items-end">
           <img src="/icons/weather.png" alt="Weather" className="w-10 h-10 mb-1 drop-shadow-md rounded-[8px]" />
-          <p className="text-sm font-medium opacity-90">Partly Cloudy</p>
-          <p className="text-xs font-medium opacity-80">H:75° L:58°</p>
+          <p className="text-sm font-medium opacity-90">{condition}</p>
+          <p className="text-xs font-medium opacity-80">H:{temp+3}° L:{temp-5}°</p>
         </div>
       </div>
       <div className="flex justify-between items-end border-t border-white/20 pt-3 mt-4">

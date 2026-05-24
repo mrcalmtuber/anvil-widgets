@@ -1,6 +1,14 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 
 export function HealthWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("health");
+  const heartRate = Number(config.heartRate);
+  const sleepHours = Number(config.sleepHours);
+  const sleepMins = Number(config.sleepMins);
+  const waterCurrent = Number(config.waterCurrent);
+  const waterGoal = Number(config.waterGoal);
+
   return (
     <WidgetWrapper delay={delay} onRemove={onRemove} className="p-4 bg-card text-card-foreground flex flex-col justify-between">
       <div>
@@ -8,7 +16,7 @@ export function HealthWidget({ delay = 0, onRemove }: { delay?: number; onRemove
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-[#FF2D55]"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           <h4 className="font-semibold text-xs text-[#FF2D55]">Heart Rate</h4>
         </div>
-        <p className="text-xl font-bold tracking-tight mt-0.5">72 <span className="text-xs font-normal text-muted-foreground">BPM</span></p>
+        <p className="text-xl font-bold tracking-tight mt-0.5">{heartRate} <span className="text-xs font-normal text-muted-foreground">BPM</span></p>
       </div>
       
       <div className="w-full h-8 mt-2 flex items-center">
@@ -20,9 +28,10 @@ export function HealthWidget({ delay = 0, onRemove }: { delay?: number; onRemove
       
       <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-white/5">
         <div className="flex-1 flex gap-0.5">
-          {[1,2,3,4,5,6].map(i => <div key={i} className="w-2 h-2 rounded-full bg-[#5AC8FA]" />)}
-          {[1,2].map(i => <div key={i} className="w-2 h-2 rounded-full bg-white/10" />)}
+          {[...Array(Math.min(waterCurrent, 8))].map((_, i) => <div key={i} className="w-2 h-2 rounded-full bg-[#5AC8FA]" />)}
+          {[...Array(Math.max(0, waterGoal - waterCurrent))].map((_, i) => <div key={i} className="w-2 h-2 rounded-full bg-white/10" />)}
         </div>
+        <span className="text-[10px] font-bold text-muted-foreground">{waterCurrent}/{waterGoal}</span>
       </div>
     </WidgetWrapper>
   );

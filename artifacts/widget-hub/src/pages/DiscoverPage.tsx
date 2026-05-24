@@ -1,14 +1,16 @@
 import { useState, useMemo } from "react";
 import { Plus, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { widgetRegistry } from "@/lib/widgetRegistry";
+import { widgetRegistry, type WidgetDef } from "@/lib/widgetRegistry";
 import { useWidgets } from "@/context/WidgetContext";
+import { AddWidgetSheet } from "@/components/AddWidgetSheet";
 
 const CATEGORIES = ["All", "Time & Location", "Productivity", "Wellness"] as const;
 
 export function DiscoverPage() {
-  const { addedWidgets, addWidget, removeWidget } = useWidgets();
+  const { addedWidgets, removeWidget } = useWidgets();
   const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>("All");
+  const [selectedWidget, setSelectedWidget] = useState<WidgetDef | null>(null);
 
   const filteredWidgets = useMemo(() => {
     if (activeCategory === "All") return widgetRegistry;
@@ -52,11 +54,16 @@ export function DiscoverPage() {
             key={widget.id}
             widget={widget}
             isAdded={addedWidgets.has(widget.id)}
-            onAdd={() => addWidget(widget.id)}
+            onAdd={() => setSelectedWidget(widget)}
             onRemove={() => removeWidget(widget.id)}
           />
         ))}
       </div>
+
+      <AddWidgetSheet
+        widget={selectedWidget}
+        onClose={() => setSelectedWidget(null)}
+      />
     </div>
   );
 }

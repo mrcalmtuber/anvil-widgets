@@ -21,7 +21,7 @@ export type WidgetDef = {
   category: "Time & Location" | "Productivity" | "Wellness";
   accentColor: string; // hex
   colSpan: 1 | 2;
-  component: React.ComponentType<{ delay?: number }>;
+  component: React.ComponentType<{ delay?: number; onRemove?: () => void }>;
 };
 
 export const widgetRegistry: WidgetDef[] = [

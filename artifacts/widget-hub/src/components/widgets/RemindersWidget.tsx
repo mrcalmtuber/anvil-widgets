@@ -1,14 +1,25 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export function RemindersWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("reminders");
   const [tasks, setTasks] = useState([
-    { id: 1, text: "Buy oat milk", done: false },
-    { id: 2, text: "Call mom", done: false },
-    { id: 3, text: "Pay rent", done: true },
-    { id: 4, text: "Book flight", done: true }
+    { id: 1, text: String(config.task1), done: false },
+    { id: 2, text: String(config.task2), done: false },
+    { id: 3, text: String(config.task3), done: true },
+    { id: 4, text: String(config.task4), done: true }
   ]);
+
+  useEffect(() => {
+    setTasks([
+      { id: 1, text: String(config.task1), done: false },
+      { id: 2, text: String(config.task2), done: false },
+      { id: 3, text: String(config.task3), done: true },
+      { id: 4, text: String(config.task4), done: true }
+    ]);
+  }, [config.task1, config.task2, config.task3, config.task4]);
 
   const toggle = (id: number) => {
     setTasks(tasks.map(t => t.id === id ? { ...t, done: !t.done } : t));

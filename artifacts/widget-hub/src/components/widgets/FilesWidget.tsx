@@ -1,10 +1,12 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 
 export function FilesWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("files");
   const files = [
-    { name: "Q4 Report", ext: "pdf", date: "Yesterday", color: "text-[#FF375F]" },
-    { name: "Design Brief", ext: "fig", date: "Tuesday", color: "text-[#BF5AF2]" },
-    { name: "Notes", ext: "md", date: "Oct 12", color: "text-[#0A84FF]" }
+    { name: String(config.file1), ext: String(config.file1).split('.').pop() || "pdf", date: "Yesterday", color: "text-[#FF375F]" },
+    { name: String(config.file2), ext: String(config.file2).split('.').pop() || "fig", date: "Tuesday", color: "text-[#BF5AF2]" },
+    { name: String(config.file3), ext: String(config.file3).split('.').pop() || "md", date: "Oct 12", color: "text-[#0A84FF]" }
   ];
 
   return (

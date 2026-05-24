@@ -1,6 +1,11 @@
+import { useConfig } from "@/context/ConfigContext";
 import { WidgetWrapper } from "./WidgetWrapper";
 
 export function MapsWidget({ delay = 0, onRemove }: { delay?: number; onRemove?: () => void }) {
+  const { config } = useConfig("maps");
+  const dest1 = String(config.dest1);
+  const dest1Time = String(config.dest1Time);
+
   return (
     <WidgetWrapper delay={delay} onRemove={onRemove} className="p-0 border-none relative overflow-hidden bg-[#242426]">
       {/* simulated map background */}
@@ -18,8 +23,8 @@ export function MapsWidget({ delay = 0, onRemove }: { delay?: number; onRemove?:
 
       <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex flex-col gap-0.5">
-          <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider">Work</span>
-          <span className="text-xs font-semibold text-white">12 min drive</span>
+          <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider">{dest1}</span>
+          <span className="text-xs font-semibold text-white">{dest1Time} drive</span>
         </div>
       </div>
     </WidgetWrapper>
