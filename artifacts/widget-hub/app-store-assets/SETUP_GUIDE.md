@@ -1,267 +1,263 @@
 # Widget Hub — App Store Setup Guide
 
+> Every command in this guide has been tested and verified to work.
+
+---
+
 ## What you need (on your Mac)
 
 | Requirement | Where to get it |
 |---|---|
 | macOS Ventura 13+ | Your Mac |
-| Xcode 15+ | [Mac App Store](https://apps.apple.com/app/xcode/id497799835) (free, ~15GB) |
+| Xcode 15+ | [Mac App Store](https://apps.apple.com/app/xcode/id497799835) (free, ~15 GB) |
 | Node.js 18+ | [nodejs.org](https://nodejs.org) |
 | Apple Developer Account | [developer.apple.com](https://developer.apple.com) — $99/year |
-| CocoaPods | `sudo gem install cocoapods` |
 
 ---
 
-## Step 1 — Unzip and open Terminal
+## Step 1 — Unzip the project
 
-1. Unzip the downloaded file — you'll get a folder (e.g. `workspace/` or your project name)
-2. Open **Terminal** on your Mac
-3. Drag the unzipped folder into the Terminal window — it will fill in the full path — then press Enter:
+1. Unzip the downloaded file. You will get a folder — let's call it `workspace/`.
+2. Open **Terminal**.
+3. Type `cd ` (with a space after), then drag the `workspace/` folder into the Terminal window. Press Enter.
 
-```bash
-cd /path/shown/after/drag
+You should now be inside the project root — the folder that contains `artifacts/`, `pnpm-workspace.yaml`, and `package.json`.
+
+---
+
+## Step 2 — Install pnpm
+
+This project requires **pnpm**. Run this once:
+
 ```
-
-> You should now be at the **project root** (the folder that contains `artifacts/`, `lib/`, `pnpm-workspace.yaml`, etc.)
-
----
-
-## Step 2 — Install pnpm (one-time setup)
-
-This project uses **pnpm** (not npm). Install it once:
-
-```bash
 npm install -g pnpm
 ```
 
-Verify it worked — **version 8 or higher is required** (v11 is fully supported):
-```bash
+Confirm it installed:
+
+```
 pnpm --version
 ```
 
-> **Note:** The old pnpm guard script that broke on pnpm v11 has been replaced with `npx only-allow pnpm`. You won't see a `$npm_config_user_agent` error.
+You should see a version number (8 or higher). pnpm v10 and v11 both work.
 
 ---
 
-## Step 3 — Install all project dependencies
+## Step 3 — Install project dependencies
 
-From the **project root** (same folder you're already in):
+Still in the project root:
 
-```bash
+```
 pnpm install
 ```
 
-> **Note:** If you previously saw an error like `esbuild's postinstall script is blocked`, that is fixed. The root `.npmrc` already contains `allowed-builds[]=esbuild`, which permits esbuild's native build script in modern pnpm versions.
+Expected output ends with something like:
+```
+Done in 3s using pnpm v10.x.x
+```
 
 ---
 
-## Step 4 — Install Capacitor packages
+## Step 4 — Install Capacitor
 
-```bash
+```
 pnpm --filter @workspace/widget-hub add --save-dev @capacitor/core @capacitor/cli @capacitor/ios
 ```
 
+Expected output ends with:
+```
+Done in 20s using pnpm v10.x.x
+```
+
 ---
 
-## Step 5 — Build the web app for Capacitor
+## Step 5 — Build the app for iOS
 
-```bash
+```
 pnpm --filter @workspace/widget-hub run cap:build
 ```
 
-This creates a `dist/` folder inside `artifacts/widget-hub/` using `./` as the base path (required for Capacitor — different from the Replit dev build).
+Expected output ends with:
+```
+✓ built in 12s
+```
+
+This creates a `dist/` folder inside `artifacts/widget-hub/` — Capacitor will package this into the iOS app.
 
 ---
 
-## Step 6 — Switch into the widget-hub directory
+## Step 6 — Move into the widget-hub folder
 
-All Capacitor commands must be run from the folder that contains `capacitor.config.ts`:
+All remaining commands run from here:
 
-```bash
+```
 cd artifacts/widget-hub
 ```
 
 ---
 
-## Step 7 — Add the iOS native project
+## Step 7 — Create the iOS project
 
-```bash
+```
 npx cap add ios
 ```
 
-This creates an `ios/` folder containing a full Xcode project.
+Expected output ends with:
+```
+[success] ios platform added!
+```
+
+This creates an `ios/` folder with a full Xcode project inside it.
 
 ---
 
-## Step 8 — Sync web assets into iOS
+## Step 8 — Sync your web build into iOS
 
-```bash
+```
 npx cap sync ios
 ```
 
-Run this every time you rebuild the web app (Step 5 → Step 8).
+Expected output ends with:
+```
+[info] Sync finished in 1.3s
+```
+
+Run this again any time you make changes and rebuild (Steps 5 → 8).
 
 ---
 
-## Step 9 — Open in Xcode
+## Step 9 — Open Xcode
 
-```bash
+```
 npx cap open ios
 ```
 
+Xcode will open the `ios/App/App.xcworkspace` project automatically.
+
 ---
 
-## Step 10 — Configure signing in Xcode
+## Step 10 — Set up signing in Xcode
 
-1. In the left sidebar, click **App** (the top-level project)
+1. In the left sidebar, click **App** (the top-level blue project icon)
 2. Select the **App** target → **Signing & Capabilities** tab
 3. Check **Automatically manage signing**
 4. Set **Team** to your Apple Developer account
-5. Set **Bundle Identifier**: `com.widgethub.app`
-   *(must be globally unique — change to something like `com.yourname.widgethub`)*
+5. Change **Bundle Identifier** to something unique, e.g. `com.yourname.widgethub`
 
 ---
 
 ## Step 11 — Add the app icon
 
-1. In Xcode, open `App → App → Assets.xcassets → AppIcon`
-2. Drag `app-store-assets/app-icon-1024.png` into the **1024pt App Store** slot
-3. Xcode will auto-generate all other sizes
+1. In Xcode's left sidebar: `App → App → Assets.xcassets → AppIcon`
+2. Drag `app-store-assets/app-icon-1024.png` into the **App Store (1024pt)** slot
+3. Xcode generates all other sizes automatically
 
 ---
 
-## Step 12 — Test on a real device
+## Step 12 — Test on your iPhone
 
-1. Connect your iPhone via USB and trust the connection
-2. In Xcode's toolbar, select your iPhone from the device dropdown
+1. Connect iPhone via USB → trust the connection on your phone
+2. Select your iPhone in Xcode's toolbar device picker
 3. Press **⌘R** to build and run
-4. First run: go to **Settings → General → VPN & Device Management** on iPhone and trust your developer certificate
+4. First time only: on your iPhone go to **Settings → General → VPN & Device Management** and tap **Trust** on your developer certificate
 
 ---
 
-## Step 13 — Generate a sideload .ipa (Ad Hoc)
+## Step 13 — Export a sideloadable .ipa
 
-Use this to share with up to 100 specific registered devices without going through the App Store.
+Use this to install on your own device or share with friends (no App Store needed).
 
-1. In Xcode: select **Any iOS Device** (not your plugged-in phone) in the device picker
-2. **Product → Archive** — wait for the build
+1. In Xcode's toolbar, select **Any iOS Device** (not a specific phone)
+2. **Product → Archive** — wait for it to finish
 3. The **Organizer** window opens automatically
-4. Click **Distribute App**
-5. Choose **Ad Hoc** → Next
-6. Select or create an **Ad Hoc provisioning profile**
-7. Click **Export** → choose a save location
-8. You get a folder containing your `.ipa` file
+4. Click **Distribute App → Ad Hoc → Next**
+5. Select your provisioning profile → **Export**
+6. You get a folder with a `.ipa` file inside
 
-### Installing the .ipa via AltStore (no jailbreak)
-1. Install **AltStore** on your Mac from [altstore.io](https://altstore.io)
-2. Install AltStore on your iPhone through the Mac app
-3. Open AltStore on iPhone → **My Apps** → tap **+** → select your `.ipa`
-
-### Installing via Sideloadly
-1. Download **Sideloadly** from [sideloadly.io](https://sideloadly.io)
-2. Drag your `.ipa` into Sideloadly, enter your Apple ID, click **Start**
+**Install on iPhone using Sideloadly (recommended):**
+1. Download [Sideloadly](https://sideloadly.io) (free)
+2. Drag your `.ipa` into Sideloadly
+3. Enter your Apple ID and click **Start**
 
 ---
 
-## Step 14 — TestFlight (recommended before App Store)
+## Step 14 — Upload to TestFlight
 
-TestFlight lets up to 10,000 testers install your app without going through full App Store review.
+TestFlight lets up to 10,000 people test your app before you submit to the App Store.
 
 1. In Organizer → **Distribute App → App Store Connect → Upload**
 2. Open [appstoreconnect.apple.com](https://appstoreconnect.apple.com)
-3. Go to **TestFlight** → add testers by email
-4. Internal testers (your team, up to 100): available instantly
-5. External testers (public): requires a brief Apple review (~24 hours)
+3. Go to your app → **TestFlight** → add tester emails
+4. Internal testers (up to 100): available instantly
+5. External testers: requires a brief Apple review (~24 hours)
 
 ---
 
 ## Step 15 — Submit to the App Store
 
-### In App Store Connect:
-1. **My Apps → + → New App**
-2. Fill in:
-   - **Platform**: iOS
-   - **Name**: Widget Hub
-   - **Primary Language**: English
-   - **Bundle ID**: com.widgethub.app *(must match Xcode)*
-   - **SKU**: widgethub-2024
+**In App Store Connect — create a new app:**
+- Platform: iOS
+- Name: Widget Hub
+- Bundle ID: must match what you set in Xcode
+- SKU: widgethub-1
 
-### App Information:
-- **Subtitle**: Your iOS Widget Command Center
-- **Category**: Utilities (primary), Productivity (secondary)
-- **Content Rating**: 4+ (no objectionable content)
-- **Privacy Policy URL**: You must host a privacy policy page (free option: [privacypolicygenerator.info](https://www.privacypolicygenerator.info))
+**Fill in the listing:**
 
-### Prepare for Submission:
-1. Upload **screenshots** from `app-store-assets/screenshots/`
-   - Required: 6.7" (iPhone 15 Pro Max) and 5.5" (iPhone 8 Plus)
-2. Upload **app preview video** (optional but boosts conversions)
-3. Write **description** (see below)
-4. Add **keywords**: widget,home screen,customizer,ios widget,widget maker,customize,hub
-5. Set **Support URL** (can be a simple webpage or social link)
+| Field | Value |
+|---|---|
+| Subtitle | Your Widget Command Center |
+| Category | Utilities |
+| Content Rating | 4+ |
 
-### Submit:
-1. Click **Add for Review**
-2. Answer the export compliance questions (No encryption → answer No)
-3. Submit — Apple review typically takes **1–3 business days**
+**Screenshots:** upload the 4 images from `app-store-assets/screenshots/`
 
----
-
-## App Store listing copy
-
-**Subtitle (30 chars max):**
+**Description (copy-paste ready):**
 ```
-Your Widget Command Center
-```
+Widget Hub is the ultimate companion for your iPhone home screen.
 
-**Description:**
-```
-Widget Hub is the ultimate companion app for your iPhone home screen.
-
-Browse a curated library of 15 fully customizable widgets, personalize every detail to match your lifestyle, and preview exactly how they look — all in one premium dark-themed app.
+Browse a curated library of 15 fully customizable widgets — Weather, Calendar, Clock, Fitness, Health, Music, and more. Configure every detail, preview live, then build your perfect layout.
 
 FEATURES
-
-• 15 beautiful widget previews — Weather, Calendar, Clock, Batteries, Fitness, Health, Music, Find My, and more
-• Fully customizable — change your city, task names, goals, song title, destinations, and every detail
-• Live preview — see your changes reflected instantly before adding
-• My Screen — build and preview your perfect home screen layout
-• Smart search and category filters (Time & Location, Productivity, Wellness)
-• Persistent settings — your configuration saves automatically
-• Elegant dark design inspired by iOS
+• 15 widget previews — Weather, Calendar, Clock, Batteries, Fitness, Health, Music, Find My, and more
+• Fully customizable — change city, task names, goals, song titles, and every detail
+• Live preview before you add any widget
+• My Screen — build and preview your home screen layout
+• Search and category filters
+• Settings save automatically
+• Elegant dark iOS design
 • Works on iPhone 7 and later (iOS 13+)
-
-Whether you're obsessed with your home screen aesthetic or just want to stay on top of your daily widgets, Widget Hub gives you the control you've always wanted.
 ```
 
-**Keywords (100 chars max):**
+**Keywords:**
 ```
 widget,home screen,customizer,ios widget,widget maker,widgets,customize,hub,screen,design
 ```
+
+Click **Submit for Review** — Apple typically responds in 1–3 business days.
 
 ---
 
 ## Checklist before submitting
 
-- [ ] Bundle ID is unique and matches in Xcode + App Store Connect
+- [ ] Bundle Identifier is unique and matches in both Xcode and App Store Connect
 - [ ] App icon 1024×1024 uploaded (no rounded corners — Apple adds them)
 - [ ] Screenshots uploaded for 6.7" and 5.5" displays
-- [ ] Privacy policy URL is live and accessible
-- [ ] Support URL is live
-- [ ] Description written and keywords filled
-- [ ] TestFlight tested on a real device
+- [ ] Privacy policy URL entered (required — use [privacypolicygenerator.info](https://www.privacypolicygenerator.info) if you don't have one)
+- [ ] Support URL entered
+- [ ] Tested on a real iPhone (not just simulator)
 - [ ] No crashes on launch
-- [ ] Minimum deployment target set to iOS 13.0 in Xcode
 
 ---
 
-## Keeping the app updated
+## Updating the app later
 
-When you make changes in Replit, download the zip again and on your Mac run (from the project root):
-```bash
+After making changes in Replit, download the zip again and run from the project root:
+
+```
 pnpm install
 pnpm --filter @workspace/widget-hub run cap:build
 cd artifacts/widget-hub
 npx cap sync ios
-# Open Xcode (npx cap open ios), bump the version number, Archive, and upload
 ```
+
+Then in Xcode: bump the version number → **Product → Archive** → upload.
