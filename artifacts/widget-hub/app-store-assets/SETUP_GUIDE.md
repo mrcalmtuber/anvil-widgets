@@ -34,10 +34,12 @@ This project uses **pnpm** (not npm). Install it once:
 npm install -g pnpm
 ```
 
-Verify it worked:
+Verify it worked — **version 8 or higher is required** (v11 is fully supported):
 ```bash
 pnpm --version
 ```
+
+> **Note:** The old pnpm guard script that broke on pnpm v11 has been replaced with `npx only-allow pnpm`. You won't see a `$npm_config_user_agent` error.
 
 ---
 
@@ -48,6 +50,8 @@ From the **project root** (same folder you're already in):
 ```bash
 pnpm install
 ```
+
+> **Note:** If you previously saw an error like `esbuild's postinstall script is blocked`, that is fixed. The root `.npmrc` already contains `allowed-builds[]=esbuild`, which permits esbuild's native build script in modern pnpm versions.
 
 ---
 
