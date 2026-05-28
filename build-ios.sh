@@ -76,7 +76,6 @@ xcodebuild \
   -destination "generic/platform=iOS" \
   -allowProvisioningUpdates \
   DEVELOPMENT_TEAM="$TEAM_ID" \
-  PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
   CODE_SIGN_STYLE=Automatic \
   archive
 
