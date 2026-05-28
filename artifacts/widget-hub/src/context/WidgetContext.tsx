@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
+import { Capacitor } from "@capacitor/core";
+
 interface WidgetContextType {
   addedWidgets: Set<string>;
   addWidget: (id: string) => void;
@@ -31,7 +33,24 @@ export function WidgetProvider({ children }: { children: ReactNode }) {
   // Save to localStorage when changed
   useEffect(() => {
     if (isLoaded) {
-      localStorage.setItem("added-widgets", JSON.stringify(Array.from(addedWidgets)));
+      const addedArr = Array.from(addedWidgets);
+      localStorage.setItem("added-widgets", JSON.stringify(addedArr));
+
+      if (Capacitor.isNativePlatform()) {
+        try {
+          const savedConfigs = localStorage.getItem("widget-configs");
+          let configs = {};
+          if (savedConfigs) {
+            try { configs = JSON.parse(savedConfigs); } catch {}
+          }
+          Capacitor.Plugins.MyWidgetPlugin.syncWidgets({
+            added: addedArr,
+            configs: configs
+          });
+        } catch (err) {
+          console.error("Failed to sync widgets to native iOS", err);
+        }
+      }
     }
   }, [addedWidgets, isLoaded]);
 

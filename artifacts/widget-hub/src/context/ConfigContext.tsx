@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { getDefaults } from "@/lib/widgetConfigs";
+import { Capacitor } from "@capacitor/core";
 
 type Configs = Record<string, Record<string, string | number>>;
 
@@ -22,6 +23,22 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem("widget-configs", JSON.stringify(configs));
+
+    if (Capacitor.isNativePlatform()) {
+      try {
+        const savedWidgets = localStorage.getItem("added-widgets");
+        let added = [];
+        if (savedWidgets) {
+          try { added = JSON.parse(savedWidgets); } catch {}
+        }
+        Capacitor.Plugins.MyWidgetPlugin.syncWidgets({
+          added: added,
+          configs: configs
+        });
+      } catch (err) {
+        console.error("Failed to sync configs to native iOS", err);
+      }
+    }
   }, [configs]);
 
   const getConfig = (widgetId: string) => ({

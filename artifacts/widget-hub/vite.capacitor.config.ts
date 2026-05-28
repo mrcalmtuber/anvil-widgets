@@ -9,7 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  base: "./",
+  base: "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

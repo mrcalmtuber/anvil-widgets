@@ -7,9 +7,9 @@ set -e
 #
 #  EDIT THESE TWO LINES BEFORE RUNNING:
 # ════════════════════════════════════════════════════════════════════
-TEAM_ID="XXXXXXXXXX"            # Your 10-char Apple Team ID
+TEAM_ID="J7LQPHFL9K"            # Your 10-char Apple Team ID
                                 # Find it: developer.apple.com → Account → Membership
-BUNDLE_ID="com.yourname.widgethub"  # Must be globally unique (change yourname)
+BUNDLE_ID="com.shah.widgethub"  # Must be globally unique (change yourname)
 # ════════════════════════════════════════════════════════════════════
 
 # ── Paths ────────────────────────────────────────────────────────────
@@ -46,23 +46,30 @@ step 2 "Building web app for Capacitor..."
 pnpm --filter @workspace/widget-hub run cap:build
 ok "Web build complete → artifacts/widget-hub/dist/"
 
-step 3 "Setting up iOS platform (regenerating for macOS)..."
+step 3 "Setting up iOS platform (checking if regeneration is needed)..."
 cd "$WIDGET"
-# Always regenerate — the ios/ folder in the zip was created on Linux
-rm -rf ios
-npx cap add ios
-ok "iOS Xcode project created"
+if [ ! -d "ios" ]; then
+  echo "No ios/ folder found. Adding iOS platform..."
+  npx cap add ios
+  ok "iOS Xcode project created"
+else
+  ok "ios/ folder already exists, preserving custom native extensions."
+fi
 
 step 4 "Syncing web assets into iOS..."
 npx cap sync ios
 ok "Sync complete"
+
+step 4.5 "Configuring Native SwiftUI Widget Extension target in Xcode..."
+ruby setup-widget-target.rb
+ok "Xcode project setup successfully"
 
 step 5 "Archiving with Xcode (takes 3–5 minutes)..."
 mkdir -p "$BUILD"
 rm -rf "$ARCHIVE"
 
 xcodebuild \
-  -workspace ios/App/App.xcworkspace \
+  -project ios/App/App.xcodeproj \
   -scheme App \
   -configuration Release \
   -archivePath "$ARCHIVE" \
