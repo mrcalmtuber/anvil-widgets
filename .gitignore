@@ -47,3 +47,19 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# iOS build artifacts
+artifacts/widget-hub/build/
+artifacts/widget-hub/dist/
+build.log
+
+# Replit / platform-specific files
+replit.md
+attached_assets/
+
+# iOS DerivedData and Xcode junk
+**/DerivedData/
+**/*.xcworkspace/xcuserdata/
+**/*.xcodeproj/xcuserdata/
+**/xcshareddata/swiftpm/
+**/*.ipa

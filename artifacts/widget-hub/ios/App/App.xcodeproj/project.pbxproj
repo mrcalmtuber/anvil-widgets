@@ -16,8 +16,8 @@
 		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
-		81C43E9F917C8652EFB57805 /* WidgetHubWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B2EBCA28E231103AE58AE /* WidgetHubWidget.swift */; };
 		A9E81CD1D8ECE82241E43EE5 /* MyWidgetPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2734994B8A47CE1EFC3368 /* MyWidgetPlugin.swift */; };
+		C1CA290534A7DB3E036A4740 /* WidgetHubWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142D5293E1F642AA6038103B /* WidgetHubWidget.swift */; };
 		EA31B5C2CA8580441BF1FFBB /* MyWidgetPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638EDED89E0BD4DC9268134 /* MyWidgetPlugin.m */; };
 		EE8592CCFCB5833B046A7490 /* WidgetHubWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DF915B9E2C683CB35B6B91D6 /* WidgetHubWidget.appex */; };
 /* End PBXBuildFile section */
@@ -47,13 +47,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		02912513050E3861B604238C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
+		0DFC739EC2C01CEBC16F6C4A /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		123F044C7AC15D35DC771B82 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
+		142D5293E1F642AA6038103B /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		15ADEC8DD6AD90727EDDA3E5 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		171AE307E130C56DA0C5EA41 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
+		1A4C1680CEC06F5B1D1D2483 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		201A54C62A65D501A68C79B9 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		3E2734994B8A47CE1EFC3368 /* MyWidgetPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyWidgetPlugin.swift; sourceTree = "<group>"; };
 		45237BC3F9B721C7FFE6AA16 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		4B4BA85FB5B045BEC7F16F41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		4CFC23F13EE513AF32C707BB /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		4E2EDB3696ECF6445DE9DDA9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
 		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,19 +70,32 @@
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		5638EDED89E0BD4DC9268134 /* MyWidgetPlugin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MyWidgetPlugin.m; sourceTree = "<group>"; };
+		639E1A091A62E8D3DF6A6707 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
+		6E5D49D6C283DB66D85919D4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		6F8703C5AEB0DE08F49497E5 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		79C24A65605D1A7FF2484FA9 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		7F7498ACF01C739050FCF370 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		81DC1CCD99A57188962876F6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		8287B4B3D220B2194B40A7FE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
+		94FA2334AB4F92126A0941D1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		976D373C49B7BEDC0609C632 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		9D7D522EE90EBA845AF285AC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
+		A1F9D9668BDC64BDA99F13AE /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		A34A86BAB20D13C1475185B8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
+		A374225A74E78D58FFB026BD /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		A4C68EA3E518C72706CEBFD3 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		AFDC9041FB3D6196D87709F3 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		B5B03D56C51E30C642D7FD23 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		BC7AB911351113A4A205EFA4 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		C8D769AD0F51F62D9CD2428C /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		DF915B9E2C683CB35B6B91D6 /* WidgetHubWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; name = WidgetHubWidget.appex; path = WidgetHubWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1989F732826D40B31AE08DD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		EA4B2EBCA28E231103AE58AE /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
 		EBB9C0A6EF388E6BC907DE0B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
+		ECA260E0FF25FA2532E8305A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		EEBDAD1A583A8F42D7C033E4 /* WidgetHubWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetHubWidget.swift; path = WidgetHubWidget/WidgetHubWidget.swift; sourceTree = "<group>"; };
+		F6A170351F2992A90166E207 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 		FA2B6C74D0A16D7579EF1EB1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = WidgetHubWidget/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +199,26 @@
 				FA2B6C74D0A16D7579EF1EB1 /* Info.plist */,
 				EA4B2EBCA28E231103AE58AE /* WidgetHubWidget.swift */,
 				E1989F732826D40B31AE08DD /* Info.plist */,
+				0DFC739EC2C01CEBC16F6C4A /* WidgetHubWidget.swift */,
+				639E1A091A62E8D3DF6A6707 /* Info.plist */,
+				BC7AB911351113A4A205EFA4 /* WidgetHubWidget.swift */,
+				6E5D49D6C283DB66D85919D4 /* Info.plist */,
+				15ADEC8DD6AD90727EDDA3E5 /* WidgetHubWidget.swift */,
+				4E2EDB3696ECF6445DE9DDA9 /* Info.plist */,
+				7F7498ACF01C739050FCF370 /* WidgetHubWidget.swift */,
+				F6A170351F2992A90166E207 /* Info.plist */,
+				1A4C1680CEC06F5B1D1D2483 /* WidgetHubWidget.swift */,
+				94FA2334AB4F92126A0941D1 /* Info.plist */,
+				A1F9D9668BDC64BDA99F13AE /* WidgetHubWidget.swift */,
+				123F044C7AC15D35DC771B82 /* Info.plist */,
+				A374225A74E78D58FFB026BD /* WidgetHubWidget.swift */,
+				ECA260E0FF25FA2532E8305A /* Info.plist */,
+				AFDC9041FB3D6196D87709F3 /* WidgetHubWidget.swift */,
+				02912513050E3861B604238C /* Info.plist */,
+				A4C68EA3E518C72706CEBFD3 /* WidgetHubWidget.swift */,
+				976D373C49B7BEDC0609C632 /* Info.plist */,
+				142D5293E1F642AA6038103B /* WidgetHubWidget.swift */,
+				81DC1CCD99A57188962876F6 /* Info.plist */,
 			);
 			name = WidgetHubWidget;
 			sourceTree = "<group>";
@@ -240,7 +280,7 @@
 						ProvisioningStyle = Automatic;
 					};
 					C3B6E2A82801B99087BE5FC1 = {
-						DevelopmentTeam = J7LQPHFL9K;
+						DevelopmentTeam = YOUR_TEAM_ID;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -295,7 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C43E9F917C8652EFB57805 /* WidgetHubWidget.swift in Sources */,
+				C1CA290534A7DB3E036A4740 /* WidgetHubWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +539,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J7LQPHFL9K;
+				DEVELOPMENT_TEAM = YOUR_TEAM_ID;
 				INFOPLIST_FILE = WidgetHubWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -522,7 +562,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J7LQPHFL9K;
+				DEVELOPMENT_TEAM = YOUR_TEAM_ID;
 				INFOPLIST_FILE = WidgetHubWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

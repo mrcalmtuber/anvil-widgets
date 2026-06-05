@@ -7,7 +7,7 @@ set -e
 #
 #  EDIT THESE TWO LINES BEFORE RUNNING:
 # ════════════════════════════════════════════════════════════════════
-TEAM_ID="J7LQPHFL9K"            # Your 10-char Apple Team ID
+TEAM_ID="YOUR_TEAM_ID"            # Your 10-char Apple Team ID
                                 # Find it: developer.apple.com → Account → Membership
 BUNDLE_ID="com.shah.widgethub"  # Must be globally unique (change yourname)
 # ════════════════════════════════════════════════════════════════════
@@ -97,6 +97,8 @@ cat > "$BUILD/ExportOptions.plist" <<PLIST
     <string>${TEAM_ID}</string>
     <key>signingStyle</key>
     <string>automatic</string>
+    <key>uploadSymbols</key>
+    <true/>
     <key>compileBitcode</key>
     <false/>
 </dict>

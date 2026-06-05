@@ -24,7 +24,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-[100dvh] w-full bg-black text-white flex flex-col">
+    <div className="min-h-[100dvh] w-full bg-background text-white flex flex-col">
       <div className="flex-1 overflow-y-auto pb-[calc(60px+env(safe-area-inset-bottom))]">
         {tab === "discover" && <DiscoverPage />}
         {tab === "myscreen" && <MyScreenPage onAddMore={() => setTab("discover")} />}
@@ -32,7 +32,7 @@ export default function Home() {
       </div>
 
       <div
-        className="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-xl border-t border-white/10 flex items-stretch z-50"
+        className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-white/10 flex items-stretch z-50"
         style={{ height: "calc(60px + env(safe-area-inset-bottom))", paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         {tabs.map(({ id, label, icon }) => (

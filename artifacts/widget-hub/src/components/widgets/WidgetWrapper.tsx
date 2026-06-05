@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Minus } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 
 interface WidgetWrapperProps {
   children: React.ReactNode;
@@ -16,6 +17,10 @@ export function WidgetWrapper({
   className = "",
   onRemove,
 }: WidgetWrapperProps) {
+  const { accentColor } = useTheme();
+  // When reset (#000000), fall back to default blue so the border stays visible
+  const borderHex = accentColor === "#000000" ? "#007AFF" : accentColor;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -24,9 +29,13 @@ export function WidgetWrapper({
       transition={{ duration: 0.4, delay, ease: [0.23, 1, 0.32, 1] }}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className={`bg-card border border-card-border rounded-[24px] overflow-hidden flex flex-col relative ${
+      className={`bg-card rounded-[24px] overflow-hidden flex flex-col relative ${
         colSpan === 2 ? "col-span-2" : "col-span-1"
       } aspect-square ${colSpan === 2 ? "aspect-[2/1]" : ""} ${className}`}
+      style={{
+        border: `1px solid ${borderHex}30`,
+        boxShadow: `0 0 0 0.5px ${borderHex}18`,
+      }}
     >
       {onRemove && (
         <button

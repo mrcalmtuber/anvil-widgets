@@ -88,7 +88,7 @@ widget_target.build_configurations.each do |config|
   config.build_settings['SWIFT_VERSION'] = '5.0'
   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
   config.build_settings['CODE_SIGN_STYLE'] = 'Automatic'
-  config.build_settings['DEVELOPMENT_TEAM'] = 'J7LQPHFL9K'
+  config.build_settings['DEVELOPMENT_TEAM'] = 'YOUR_TEAM_ID'
   config.build_settings['CURRENT_PROJECT_VERSION'] = '1'
   config.build_settings['MARKETING_VERSION'] = '1.0'
 end
@@ -119,7 +119,7 @@ project.root_object.attributes['TargetAttributes'] ||= {}
 
 # Get the Development Team ID from the main App target to be consistent
 app_attributes = project.root_object.attributes['TargetAttributes'][app_target.uuid] || {}
-team_id = app_attributes['DevelopmentTeam'] || 'J7LQPHFL9K'
+team_id = app_attributes['DevelopmentTeam'] || 'YOUR_TEAM_ID'
 
 # Apply automatic signing style and Development Team to the Widget target
 project.root_object.attributes['TargetAttributes'][widget_target.uuid] ||= {}

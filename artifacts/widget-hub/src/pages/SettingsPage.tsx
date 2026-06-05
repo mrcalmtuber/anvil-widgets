@@ -1,11 +1,15 @@
 import { useWidgets } from "@/context/WidgetContext";
 import { widgetRegistry } from "@/lib/widgetRegistry";
-import { Trash2, Info, Star, Shield, ChevronRight, RotateCcw } from "lucide-react";
+import { Trash2, Info, Star, Shield, ChevronRight, RotateCcw, Palette } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
+import { ColorPickerSheet } from "@/components/ColorPickerSheet";
 
 export function SettingsPage() {
   const { addedWidgets, removeWidget } = useWidgets();
+  const { accentColor, setAccentColor } = useTheme();
   const [showConfirmClear, setShowConfirmClear] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(false);
 
   const handleClearAll = () => {
     widgetRegistry.forEach((w) => removeWidget(w.id));
@@ -32,6 +36,21 @@ export function SettingsPage() {
   };
 
   const sections: Section[] = [
+    {
+      title: "Appearance",
+      items: [
+        {
+          icon: (
+            <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: `${accentColor}30` }}>
+              <Palette className="w-4 h-4" style={{ color: accentColor }} />
+            </div>
+          ),
+          label: "Accent Color",
+          value: accentColor.toUpperCase(),
+          action: () => setShowColorPicker(true),
+        },
+      ],
+    },
     {
       title: "Your Widgets",
       items: [
@@ -91,7 +110,7 @@ export function SettingsPage() {
         {sections.map((section) => (
           <div key={section.title}>
             <p className="text-[12px] font-semibold text-white/40 uppercase tracking-wider mb-2 px-1">{section.title}</p>
-            <div className="bg-[#1c1c1e] rounded-2xl overflow-hidden divide-y divide-white/5">
+            <div className="bg-card rounded-2xl overflow-hidden divide-y divide-white/5">
               {section.items.map((item) => (
                 <button
                   key={item.label}
@@ -102,7 +121,14 @@ export function SettingsPage() {
                 >
                   {item.icon}
                   <span className={`flex-1 text-[15px] font-medium ${item.destructive ? "text-red-400" : "text-white"}`}>{item.label}</span>
-                  {item.value && <span className="text-[14px] text-white/40">{item.value}</span>}
+                  {item.label === "Accent Color" ? (
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full border border-white/20" style={{ background: accentColor }} />
+                      <span className="text-[13px] font-mono text-white/40">{accentColor.toUpperCase()}</span>
+                    </div>
+                  ) : item.value ? (
+                    <span className="text-[14px] text-white/40">{item.value}</span>
+                  ) : null}
                   {item.action && !item.value && <ChevronRight className="w-4 h-4 text-white/20" />}
                 </button>
               ))}
@@ -111,9 +137,16 @@ export function SettingsPage() {
         ))}
       </div>
 
+      <ColorPickerSheet
+        open={showColorPicker}
+        currentColor={accentColor}
+        onApply={setAccentColor}
+        onClose={() => setShowColorPicker(false)}
+      />
+
       {showConfirmClear && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-end justify-center pb-8 px-4">
-          <div className="bg-[#1c1c1e] rounded-2xl w-full max-w-sm overflow-hidden">
+          <div className="bg-card rounded-2xl w-full max-w-sm overflow-hidden">
             <div className="px-6 pt-6 pb-4 text-center">
               <h3 className="text-[17px] font-semibold mb-1">Clear All Widgets?</h3>
               <p className="text-[14px] text-white/50">This will remove all widgets and reset your configurations.</p>

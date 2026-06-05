@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.shah.widgethub',
-  appName: 'Widget Hub',
+  appName: 'Anvil',
   webDir: 'dist',
   server: {
     androidScheme: 'https',
@@ -11,7 +11,7 @@ const config: CapacitorConfig = {
   ios: {
     contentInset: 'automatic',
     backgroundColor: '#000000',
-    scrollEnabled: false,
+    scrollEnabled: true,
   },
   plugins: {
     SplashScreen: {

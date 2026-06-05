@@ -286,8 +286,8 @@ struct WidgetHubWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             WidgetHubWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Widget Hub")
-        .description("Elegant dynamic dashboard widgets.")
+        .configurationDisplayName("Anvil")
+        .description("Aesthetic widgets for your home screen.")
         .supportedFamilies([.systemSmall])
     }
 }
